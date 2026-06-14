@@ -203,7 +203,7 @@ export default function HomePage() {
         />
 
         <img
-          src="/hero-type.svg"
+          src="/hero-type-new.svg"
           alt="we are thørne"
           style={{
             position: "absolute",
