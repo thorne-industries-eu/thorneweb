@@ -38,6 +38,37 @@ export default function HomePage() {
           font-display: swap;
         }
 
+        html {
+          scroll-behavior: smooth;
+        }
+
+        /* ===== HERO ARROW ===== */
+        .hero-arrow {
+          position: absolute;
+          left: 50%;
+          bottom: 34px;
+          transform: translateX(-50%);
+          z-index: 5;
+          width: 42px;
+          height: 42px;
+          border-radius: 999px;
+          border: 1px solid rgba(251, 236, 227, 0.55);
+          background: rgba(30, 4, 4, 0.22);
+          display: grid;
+          place-items: center;
+          cursor: pointer;
+          transition:
+            background 180ms ease,
+            border-color 180ms ease,
+            transform 180ms ease;
+        }
+
+        .hero-arrow:hover {
+          background: rgba(251, 236, 227, 0.12);
+          border-color: rgba(251, 236, 227, 0.9);
+          transform: translateX(-50%) translateY(3px);
+        }
+
         /* ===== STATEMENT ===== */
         .thorne-statement-title {
           font-size: 32px;
@@ -82,7 +113,6 @@ export default function HomePage() {
           flex: 0 0 auto;
         }
 
-        /* FIX: make the SVG render larger inside the box */
         .dorian-logo-box img {
           width: 92px;
           height: 92px;
@@ -145,17 +175,15 @@ export default function HomePage() {
           gap: 18px;
         }
 
-        /* 15% bigger buttons */
         .dorian-btn {
-          height: 67px; /* 58 * 1.15 = 66.7 */
-          padding: 0 30px; /* 26 * 1.15 = 29.9 */
-          border-radius: 16px; /* 14 * 1.15 = 16.1 */
+          height: 67px;
+          padding: 0 30px;
+          border-radius: 16px;
           font-family: "SFProDisplay";
-          font-size: 21px; /* 18 * 1.15 = 20.7 */
+          font-size: 21px;
           cursor: pointer;
         }
 
-        /* first 2 buttons bold text */
         .dorian-btn-outline {
           background: rgba(0, 0, 0, 0.18);
           border: 2px solid rgba(235, 80, 60, 0.35);
@@ -214,10 +242,29 @@ export default function HomePage() {
             opacity: 0.85,
           }}
         />
+
+        <a className="hero-arrow" href="#intro" aria-label="Scroll to next section">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6 9L12 15L18 9"
+              stroke="#FBECE3"
+              strokeWidth="1.7"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </a>
       </section>
 
       {/* STATEMENT + DORIAN */}
       <section
+        id="intro"
         style={{
           backgroundColor: "#1e0404",
           padding: "140px 24px 200px",
@@ -316,7 +363,7 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* RIGHT IMAGE — FIXED TO MATCH TEMPLATE */}
+              {/* RIGHT IMAGE */}
               <div style={{ position: "relative" }}>
                 <img
                   src="/dorian-img.jpg"
@@ -329,7 +376,6 @@ export default function HomePage() {
                   }}
                 />
 
-                {/* dark gradient overlay */}
                 <div
                   style={{
                     position: "absolute",
@@ -346,3 +392,4 @@ export default function HomePage() {
     </main>
   );
 }
+
