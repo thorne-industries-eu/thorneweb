@@ -1,0 +1,19 @@
+<div class="nv-tabs-{{ section.id }}__col-title" style="margin-top:32px;">
+  Ecocert COSMOS Natural
+</div>
+<div class="nv-tabs-{{ section.id }}__text">
+  <p>COSMOS NATURAL Certified</p>
+  <p>
+    Certified by ECOCERT Greenlife according to COSMOS Standard available at
+    <a href="https://www.ecocert.com/en/certification-detail/natural-and-organic-cosmetics-cosmos"
+       target="_blank" rel="noopener">
+      https://www.ecocert.com/en/certification-detail/natural-and-organic-cosmetics-cosmos
+    </a>
+  </p>
+</div>
+
+<div>
+  <div class="nv-tabs-{{ section.id }}__col-title">Certificate</div>
+  <img class="nv-tabs-{{ section.id }}__certificate-img"
+       src="{{ 'cosmosnatural.png' | file_url }}"
+       alt="COSMOS NATURAL certificate badge">

@@ -1,142 +1,348 @@
 "use client";
 
-
-import Header from "./components/header";
-
 export default function HomePage() {
   return (
-    <>
-      {/* Background layer */}
-      <div id="thorn-bg" />
+    <main style={{ width: "100vw" }}>
+      <style jsx global>{`
+        /* ===== FONTS ===== */
+        @font-face {
+          font-family: "SFProDisplay";
+          src: url("/fonts/sf-pro-display/sf-pro-display-regular.woff2")
+            format("woff2");
+          font-weight: 400;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "SFProDisplay";
+          src: url("/fonts/sf-pro-display/sf-pro-display-bold.woff2")
+            format("woff2");
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NewYorkExtraLarge";
+          src: url("/fonts/new-york-extra-large/NewYorkExtraLarge-Medium.woff2")
+            format("woff2");
+          font-weight: 500;
+          font-style: normal;
+          font-display: swap;
+        }
+        @font-face {
+          font-family: "NewYorkExtraLarge";
+          src: url("/fonts/new-york-extra-large/NewYorkExtraLarge-Bold.woff2")
+            format("woff2");
+          font-weight: 700;
+          font-style: normal;
+          font-display: swap;
+        }
 
-      {/* Content */}
-      <div
+        /* ===== STATEMENT ===== */
+        .thorne-statement-title {
+          font-size: 32px;
+          line-height: 1.15;
+        }
+        .thorne-break {
+          display: block;
+        }
+        @media (max-width: 520px) {
+          .thorne-statement-title {
+            font-size: 18px;
+            line-height: 1.25;
+          }
+          .thorne-break {
+            display: inline;
+          }
+        }
+
+        /* ===== DORIAN CARD TYPO ===== */
+        .dorian-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 20px;
+          margin-bottom: 18px;
+        }
+
+        .dorian-lockup {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding-top: 2px;
+        }
+
+        .dorian-logo-box {
+          width: 112px;
+          height: 112px;
+          border-radius: 18px;
+          background: #ffffff;
+          display: grid;
+          place-items: center;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+          flex: 0 0 auto;
+        }
+
+        /* FIX: make the SVG render larger inside the box */
+        .dorian-logo-box img {
+          width: 92px;
+          height: 92px;
+          display: block;
+          transform: scale(1.18);
+          transform-origin: center;
+        }
+
+        .dorian-introducing {
+          font-family: "SFProDisplay";
+          font-weight: 400;
+          font-size: 26px;
+          line-height: 1;
+          color: rgba(251, 236, 227, 0.8);
+        }
+
+        .dorian-wordmark {
+          font-family: "NewYorkExtraLarge";
+          font-weight: 500;
+          font-size: 80px;
+          line-height: 0.9;
+          letter-spacing: 0.004em;
+          color: #fbece3;
+          margin: 0;
+          display: inline-flex;
+          gap: 10px;
+          align-items: flex-start;
+        }
+
+        .dorian-tm {
+          font-family: "SFProDisplay";
+          font-weight: 700;
+          font-size: 26px;
+          position: relative;
+          top: 12px;
+          color: rgba(251, 236, 227, 0.92);
+        }
+
+        .dorian-tagline {
+          font-family: "NewYorkExtraLarge";
+          font-weight: 700;
+          font-size: 54px;
+          line-height: 1.08;
+          color: #fbece3;
+          margin: 0 0 26px 0;
+          max-width: 740px;
+        }
+
+        .dorian-body {
+          font-family: "SFProDisplay";
+          font-size: 25px;
+          line-height: 1.5;
+          color: rgba(251, 236, 227, 0.78);
+          margin: 0 0 44px 0;
+          max-width: 720px;
+        }
+
+        .dorian-btnrow {
+          display: flex;
+          gap: 18px;
+        }
+
+        /* 15% bigger buttons */
+        .dorian-btn {
+          height: 67px; /* 58 * 1.15 = 66.7 */
+          padding: 0 30px; /* 26 * 1.15 = 29.9 */
+          border-radius: 16px; /* 14 * 1.15 = 16.1 */
+          font-family: "SFProDisplay";
+          font-size: 21px; /* 18 * 1.15 = 20.7 */
+          cursor: pointer;
+        }
+
+        /* first 2 buttons bold text */
+        .dorian-btn-outline {
+          background: rgba(0, 0, 0, 0.18);
+          border: 2px solid rgba(235, 80, 60, 0.35);
+          color: rgba(251, 236, 227, 0.9);
+          font-weight: 700;
+        }
+
+        .dorian-btn-primary {
+          background: #eb503c;
+          border: 2px solid #eb503c;
+          color: #ffffff;
+          font-weight: 600;
+        }
+      `}</style>
+
+      {/* HERO */}
+      <section
         style={{
+          height: "100vh",
           position: "relative",
-          zIndex: 1,
-          minHeight: "100vh",
+          overflow: "hidden",
         }}
       >
-        <Header />
-
-        <main
+        <div
           style={{
-            maxWidth: "1200px",
+            position: "absolute",
+            inset: 0,
+            backgroundImage: 'url("/thorne-background.jpg")',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            height: "34vh",
+            background:
+              "linear-gradient(to bottom, rgba(30,4,4,0) 0%, rgba(30,4,4,0.55) 45%, #1e0404 100%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        <img
+          src="/hero-type.svg"
+          alt="we are thørne"
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "45%",
+            transform: "translate(-50%, -50%)",
+            width: "min(820px, 68vw)",
+            opacity: 0.85,
+          }}
+        />
+      </section>
+
+      {/* STATEMENT + DORIAN */}
+      <section
+        style={{
+          backgroundColor: "#1e0404",
+          padding: "140px 24px 200px",
+          textAlign: "center",
+        }}
+      >
+        <h1
+          className="thorne-statement-title"
+          style={{
+            fontFamily: "NewYorkExtraLarge",
+            color: "#fbece3",
+            maxWidth: 980,
             margin: "0 auto",
-            padding: "160px 32px 120px",
-            color: "#ffffff",
           }}
         >
-          {/* HERO */}
-          <h1
-            style={{
-              fontSize: "72px",
-              lineHeight: "1.05",
-              fontWeight: 500,
-              letterSpacing: "-0.025em",
-              margin: 0,
-              maxWidth: "900px",
-            }}
-          >
-            Regulatory intelligence,
-            <br />
-            engineered for certainty
-          </h1>
+          We design and build uncompromising software
+          <span className="thorne-break" />
+          that defines what comes next.
+        </h1>
 
-          <p
-            style={{
-              marginTop: "28px",
-              fontSize: "20px",
-              lineHeight: "1.6",
-              maxWidth: "640px",
-              opacity: 0.9,
-            }}
-          >
-            Bank-grade EU AI Act compliance software. Evidence-first. Regulator-ready.
-          </p>
+        <div
+          style={{
+            width: 48,
+            height: 1,
+            backgroundColor: "rgba(251,236,227,0.8)",
+            margin: "36px auto 80px",
+          }}
+        />
 
-          {/* CTA */}
+        <div
+          style={{
+            transform: "scale(0.7)",
+            transformOrigin: "top center",
+            marginBottom: "-260px",
+          }}
+        >
           <div
             style={{
-              marginTop: "40px",
-              display: "flex",
-              gap: "16px",
-              flexWrap: "wrap",
+              maxWidth: 1680,
+              margin: "0 auto",
+              borderRadius: 34,
+              overflow: "hidden",
+              border: "2px solid rgba(235,80,60,0.8)",
+              background: "rgba(0,0,0,0.1)",
             }}
           >
-            <a
-              href="#"
+            <div
               style={{
-                padding: "14px 22px",
-                borderRadius: "999px",
-                background: "#ffffff",
-                color: "#0b0d12",
-                fontSize: "15px",
-                fontWeight: 500,
-                textDecoration: "none",
+                display: "grid",
+                gridTemplateColumns: "0.52fr 0.48fr",
+                minHeight: 660,
               }}
             >
-              Request demo
-            </a>
+              {/* LEFT */}
+              <div
+                style={{
+                  background: "#1e0404",
+                  padding: "86px 84px",
+                  textAlign: "left",
+                }}
+              >
+                <div className="dorian-row">
+                  <div className="dorian-logo-box">
+                    <img src="/dorian-logo.svg" alt="Dorian" />
+                  </div>
 
-            <a
-              href="#"
-              style={{
-                padding: "14px 22px",
-                borderRadius: "999px",
-                border: "1px solid rgba(255,255,255,0.4)",
-                color: "#ffffff",
-                fontSize: "15px",
-                fontWeight: 500,
-                textDecoration: "none",
-              }}
-            >
-              Read the EU AI Act
-            </a>
+                  <div className="dorian-lockup">
+                    <div className="dorian-introducing">Introducing</div>
+                    <h2 className="dorian-wordmark">
+                      Dorian <span className="dorian-tm">™</span>
+                    </h2>
+                  </div>
+                </div>
+
+                <p className="dorian-tagline">
+                  Regulatory intelligence,
+                  <br />
+                  engineered for certainty.
+                </p>
+
+                <p className="dorian-body">
+                  Turn EU AI Act requirements into clear, auditable compliance
+                  that is documented, structured, and ready for regulators.
+                </p>
+
+                <div className="dorian-btnrow">
+                  <button className="dorian-btn dorian-btn-outline">
+                    EU AI Act
+                  </button>
+                  <button className="dorian-btn dorian-btn-outline">
+                    Whitepaper
+                  </button>
+                  <button className="dorian-btn dorian-btn-primary">
+                    Learn More
+                  </button>
+                </div>
+              </div>
+
+              {/* RIGHT IMAGE — FIXED TO MATCH TEMPLATE */}
+              <div style={{ position: "relative" }}>
+                <img
+                  src="/dorian-img.jpg"
+                  alt=""
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                  }}
+                />
+
+                {/* dark gradient overlay */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background:
+                      "linear-gradient(90deg, rgba(30,4,4,0.85) 0%, rgba(30,4,4,0.55) 35%, rgba(30,4,4,0.15) 70%, rgba(30,4,4,0.05) 100%)",
+                  }}
+                />
+              </div>
+            </div>
           </div>
-
-          {/* DIVIDER */}
-          <div
-            style={{
-              marginTop: "120px",
-              height: "1px",
-              width: "100%",
-              background: "rgba(255,255,255,0.15)",
-            }}
-          />
-
-          {/* PLACEHOLDER FOR NEXT SECTIONS */}
-          <section
-            style={{
-              marginTop: "120px",
-              maxWidth: "800px",
-            }}
-          >
-            <h2
-              style={{
-                fontSize: "36px",
-                fontWeight: 500,
-                margin: 0,
-              }}
-            >
-              Built for regulators. Trusted by institutions.
-            </h2>
-
-            <p
-              style={{
-                marginTop: "20px",
-                fontSize: "18px",
-                lineHeight: "1.6",
-                opacity: 0.9,
-              }}
-            >
-              THØRN structures compliance as evidence, not paperwork. Every
-              output maps directly to EU AI Act obligations, audit trails, and
-              supervisory review.
-            </p>
-          </section>
-        </main>
-      </div>
-    </>
+        </div>
+      </section>
+    </main>
   );
 }

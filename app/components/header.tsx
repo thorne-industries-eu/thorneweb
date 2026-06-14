@@ -2,118 +2,141 @@
 
 import { useEffect, useState } from "react";
 
-const NAV_ITEMS = ["Features", "Company", "EU AI Act", "Applicability", "Pricing"];
+const NAV_ITEMS = ["Company", "Products", "Services", "Security", "Contacts"];
 
 export default function Header() {
+  const [isTablet, setIsTablet] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 1200);
+    const check = () => setIsTablet(window.innerWidth <= 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll as any);
+  }, []);
+
+  const BURGER_PX = 56;
+
   return (
     <header
       style={{
-        position: "sticky",
+        position: "fixed",
         top: 0,
-        zIndex: 50,
-        background: "rgba(0,0,0,0.65)",
-        backdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        background: scrolled ? "rgba(30,4,4,0.45)" : "transparent",
+        backdropFilter: scrolled ? "blur(8px)" : "none",
+        transition: "background 180ms ease, backdrop-filter 180ms ease",
       }}
     >
       <div
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "18px 32px",
+          width: "100%",
+          padding: "22px 44px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
         }}
       >
-        {/* LOGO */}
-        <a href="/" style={{ display: "block", lineHeight: 0 }}>
-          <img
-            src="/thorne-logo.svg"
-            alt="THØRNE"
-            style={{
-              height: "20px",
-              width: "auto",
-              display: "block",
-              filter: "brightness(0) saturate(100%) invert(1)",
-            }}
-          />
-        </a>
+        <img
+          src="/thorne-logo.svg"
+          alt="THØRNE"
+          style={{ height: 24, display: "block" }}
+        />
 
-        {/* DESKTOP NAV */}
-        {!isMobile && (
-          <nav style={{ display: "flex", gap: "36px" }}>
-            {NAV_ITEMS.map((label) => (
+        {!isTablet && (
+          <nav style={{ display: "flex", gap: 42, alignItems: "center" }}>
+            {NAV_ITEMS.map((item) => (
               <a
-                key={label}
+                key={item}
                 href="#"
                 style={{
-                  fontSize: "14px",
+                  color: "rgba(255,255,255,0.92)",
+                  fontSize: 14,
                   fontWeight: 500,
-                  letterSpacing: "0.02em",
+                  letterSpacing: "0.01em",
                   textDecoration: "none",
-                  color: "rgba(255,255,255,0.85)",
                 }}
               >
-                {label}
+                {item}
               </a>
             ))}
           </nav>
         )}
 
-        {/* MOBILE MENU BUTTON */}
-        {isMobile && (
+        {isTablet && (
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Menu"
             style={{
+              width: BURGER_PX,
+              height: BURGER_PX,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
               background: "none",
               border: "none",
-              fontSize: "22px",
+              padding: 0,
               cursor: "pointer",
-              color: "#ffffff",
             }}
           >
-            ☰
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="white"
+              strokeWidth="1"
+              strokeLinecap="round"
+              style={{
+                width: BURGER_PX,
+                height: BURGER_PX,
+                display: "block",
+              }}
+            >
+              <line x1="4" y1="7" x2="20" y2="7" />
+              <line x1="8" y1="12" x2="20" y2="12" />
+              <line x1="12" y1="17" x2="20" y2="17" />
+            </svg>
           </button>
         )}
       </div>
 
-      {/* MOBILE MENU */}
-      {isMobile && menuOpen && (
+      {isTablet && menuOpen && (
         <div
           style={{
-            margin: "0 16px 16px",
-            padding: "24px",
-            borderRadius: "18px",
-            background: "rgba(0,0,0,0.92)",
+            position: "absolute",
+            top: "100%",
+            left: 0,
+            right: 0,
+            background: "rgba(30,4,4,0.55)",
+            backdropFilter: "blur(8px)",
+            padding: "28px 44px",
             display: "flex",
             flexDirection: "column",
-            gap: "18px",
+            gap: 20,
           }}
         >
-          {NAV_ITEMS.map((label) => (
+          {NAV_ITEMS.map((item) => (
             <a
-              key={label}
+              key={item}
               href="#"
+              onClick={() => setMenuOpen(false)}
               style={{
-                fontSize: "16px",
+                color: "white",
+                fontSize: 16,
                 fontWeight: 500,
                 textDecoration: "none",
-                color: "#ffffff",
               }}
             >
-              {label}
+              {item}
             </a>
           ))}
         </div>
