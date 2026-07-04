@@ -42,42 +42,6 @@ export default function HomePage() {
           scroll-behavior: smooth;
         }
 
-        /* ===== HERO ARROW ===== */
-        .hero-arrow {
-          position: absolute;
-          left: 50%;
-          bottom: 34px;
-          transform: translateX(-50%);
-          z-index: 5;
-          width: 38px;
-          height: 38px;
-          display: grid;
-          place-items: center;
-          cursor: pointer;
-          animation: arrowDown 1400ms ease-in-out infinite;
-        }
-
-        .hero-arrow:hover {
-          animation-play-state: paused;
-          transform: translateX(-50%) translateY(4px);
-        }
-
-        .hero-arrow svg {
-          display: block;
-        }
-
-        @keyframes arrowDown {
-          0% {
-            transform: translateX(-50%) translateY(0);
-          }
-          50% {
-            transform: translateX(-50%) translateY(8px);
-          }
-          100% {
-            transform: translateX(-50%) translateY(0);
-          }
-        }
-
         /* ===== STATEMENT ===== */
         .thorne-statement-title {
           font-size: 32px;
@@ -140,24 +104,6 @@ export default function HomePage() {
             opacity: 0.85,
           }}
         />
-
-        <a className="hero-arrow" href="#intro" aria-label="Scroll to next section">
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M5.5 8.5L12 15L18.5 8.5"
-              stroke="#FBECE3"
-              strokeWidth="2.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </a>
       </section>
     </main>
   );

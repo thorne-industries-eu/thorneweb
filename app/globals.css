@@ -32,3 +32,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: geometricPrecision;
 }
+
+/* Temporarily hide hero arrow */
+.hero-arrow {
+  display: none !important;
+}
