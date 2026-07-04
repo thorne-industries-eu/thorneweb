@@ -49,24 +49,33 @@ export default function HomePage() {
           bottom: 34px;
           transform: translateX(-50%);
           z-index: 5;
-          width: 42px;
-          height: 42px;
-          border-radius: 999px;
-          border: 1px solid rgba(251, 236, 227, 0.55);
-          background: rgba(30, 4, 4, 0.22);
+          width: 38px;
+          height: 38px;
           display: grid;
           place-items: center;
           cursor: pointer;
-          transition:
-            background 180ms ease,
-            border-color 180ms ease,
-            transform 180ms ease;
+          animation: arrowDown 1400ms ease-in-out infinite;
         }
 
         .hero-arrow:hover {
-          background: rgba(251, 236, 227, 0.12);
-          border-color: rgba(251, 236, 227, 0.9);
-          transform: translateX(-50%) translateY(3px);
+          animation-play-state: paused;
+          transform: translateX(-50%) translateY(4px);
+        }
+
+        .hero-arrow svg {
+          display: block;
+        }
+
+        @keyframes arrowDown {
+          0% {
+            transform: translateX(-50%) translateY(0);
+          }
+          50% {
+            transform: translateX(-50%) translateY(8px);
+          }
+          100% {
+            transform: translateX(-50%) translateY(0);
+          }
         }
 
         /* ===== STATEMENT ===== */
@@ -85,117 +94,6 @@ export default function HomePage() {
           .thorne-break {
             display: inline;
           }
-        }
-
-        /* ===== DORIAN CARD TYPO ===== */
-        .dorian-row {
-          display: flex;
-          align-items: flex-start;
-          gap: 20px;
-          margin-bottom: 18px;
-        }
-
-        .dorian-lockup {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-          padding-top: 2px;
-        }
-
-        .dorian-logo-box {
-          width: 112px;
-          height: 112px;
-          border-radius: 18px;
-          background: #ffffff;
-          display: grid;
-          place-items: center;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-          flex: 0 0 auto;
-        }
-
-        .dorian-logo-box img {
-          width: 92px;
-          height: 92px;
-          display: block;
-          transform: scale(1.18);
-          transform-origin: center;
-        }
-
-        .dorian-introducing {
-          font-family: "SFProDisplay";
-          font-weight: 400;
-          font-size: 26px;
-          line-height: 1;
-          color: rgba(251, 236, 227, 0.8);
-        }
-
-        .dorian-wordmark {
-          font-family: "NewYorkExtraLarge";
-          font-weight: 500;
-          font-size: 80px;
-          line-height: 0.9;
-          letter-spacing: 0.004em;
-          color: #fbece3;
-          margin: 0;
-          display: inline-flex;
-          gap: 10px;
-          align-items: flex-start;
-        }
-
-        .dorian-tm {
-          font-family: "SFProDisplay";
-          font-weight: 700;
-          font-size: 26px;
-          position: relative;
-          top: 12px;
-          color: rgba(251, 236, 227, 0.92);
-        }
-
-        .dorian-tagline {
-          font-family: "NewYorkExtraLarge";
-          font-weight: 700;
-          font-size: 54px;
-          line-height: 1.08;
-          color: #fbece3;
-          margin: 0 0 26px 0;
-          max-width: 740px;
-        }
-
-        .dorian-body {
-          font-family: "SFProDisplay";
-          font-size: 25px;
-          line-height: 1.5;
-          color: rgba(251, 236, 227, 0.78);
-          margin: 0 0 44px 0;
-          max-width: 720px;
-        }
-
-        .dorian-btnrow {
-          display: flex;
-          gap: 18px;
-        }
-
-        .dorian-btn {
-          height: 67px;
-          padding: 0 30px;
-          border-radius: 16px;
-          font-family: "SFProDisplay";
-          font-size: 21px;
-          cursor: pointer;
-        }
-
-        .dorian-btn-outline {
-          background: rgba(0, 0, 0, 0.18);
-          border: 2px solid rgba(235, 80, 60, 0.35);
-          color: rgba(251, 236, 227, 0.9);
-          font-weight: 700;
-        }
-
-        .dorian-btn-primary {
-          background: #eb503c;
-          border: 2px solid #eb503c;
-          color: #ffffff;
-          font-weight: 600;
         }
       `}</style>
 
@@ -245,151 +143,22 @@ export default function HomePage() {
 
         <a className="hero-arrow" href="#intro" aria-label="Scroll to next section">
           <svg
-            width="22"
-            height="22"
+            width="28"
+            height="28"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M6 9L12 15L18 9"
+              d="M5.5 8.5L12 15L18.5 8.5"
               stroke="#FBECE3"
-              strokeWidth="1.7"
+              strokeWidth="2.8"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
         </a>
       </section>
-
-      {/* STATEMENT + DORIAN */}
-      <section
-        id="intro"
-        style={{
-          backgroundColor: "#1e0404",
-          padding: "140px 24px 200px",
-          textAlign: "center",
-        }}
-      >
-        <h1
-          className="thorne-statement-title"
-          style={{
-            fontFamily: "NewYorkExtraLarge",
-            color: "#fbece3",
-            maxWidth: 980,
-            margin: "0 auto",
-          }}
-        >
-          We design and build uncompromising software
-          <span className="thorne-break" />
-          that defines what comes next.
-        </h1>
-
-        <div
-          style={{
-            width: 48,
-            height: 1,
-            backgroundColor: "rgba(251,236,227,0.8)",
-            margin: "36px auto 80px",
-          }}
-        />
-
-        <div
-          style={{
-            transform: "scale(0.7)",
-            transformOrigin: "top center",
-            marginBottom: "-260px",
-          }}
-        >
-          <div
-            style={{
-              maxWidth: 1680,
-              margin: "0 auto",
-              borderRadius: 34,
-              overflow: "hidden",
-              border: "2px solid rgba(235,80,60,0.8)",
-              background: "rgba(0,0,0,0.1)",
-            }}
-          >
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "0.52fr 0.48fr",
-                minHeight: 660,
-              }}
-            >
-              {/* LEFT */}
-              <div
-                style={{
-                  background: "#1e0404",
-                  padding: "86px 84px",
-                  textAlign: "left",
-                }}
-              >
-                <div className="dorian-row">
-                  <div className="dorian-logo-box">
-                    <img src="/dorian-logo.svg" alt="Dorian" />
-                  </div>
-
-                  <div className="dorian-lockup">
-                    <div className="dorian-introducing">Introducing</div>
-                    <h2 className="dorian-wordmark">
-                      Dorian <span className="dorian-tm">™</span>
-                    </h2>
-                  </div>
-                </div>
-
-                <p className="dorian-tagline">
-                  Regulatory intelligence,
-                  <br />
-                  engineered for certainty.
-                </p>
-
-                <p className="dorian-body">
-                  Turn EU AI Act requirements into clear, auditable compliance
-                  that is documented, structured, and ready for regulators.
-                </p>
-
-                <div className="dorian-btnrow">
-                  <button className="dorian-btn dorian-btn-outline">
-                    EU AI Act
-                  </button>
-                  <button className="dorian-btn dorian-btn-outline">
-                    Whitepaper
-                  </button>
-                  <button className="dorian-btn dorian-btn-primary">
-                    Learn More
-                  </button>
-                </div>
-              </div>
-
-              {/* RIGHT IMAGE */}
-              <div style={{ position: "relative" }}>
-                <img
-                  src="/dorian-img.jpg"
-                  alt=""
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block",
-                  }}
-                />
-
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    background:
-                      "linear-gradient(90deg, rgba(30,4,4,0.85) 0%, rgba(30,4,4,0.55) 35%, rgba(30,4,4,0.15) 70%, rgba(30,4,4,0.05) 100%)",
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
-
