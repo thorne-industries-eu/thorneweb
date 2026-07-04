@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "./components/header";
 
 const oswald = localFont({
   src: "./fonts/oswald/Oswald-VariableFont_wght.ttf",
@@ -31,7 +30,6 @@ export default function RootLayout({
           overflowY: "auto",
         }}
       >
-        <Header />
         {children}
       </body>
     </html>
