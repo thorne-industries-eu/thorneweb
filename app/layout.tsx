@@ -11,9 +11,7 @@ const oswald = localFont({
 export const metadata: Metadata = {
   title: "Thørne Industries",
   description: "Regulatory intelligence, engineered for certainty",
-  icons: {
-    icon: "/iconv2.png",
-  },
+  
 };
 
 export default function RootLayout({
